@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FallacyFinder</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">FallacyFinder</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#how">How it Works</a></li>
+        <li class="nav-item"><a class="nav-link" href="#try">Try Now</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section id="hero" class="hero-section text-center d-flex align-items-center justify-content-center">
+  <div class="container">
+    <h1 class="display-4">Spot Logical Fallacies in Any Argument</h1>
+    <p class="lead">Detect flawed reasoning using AI-powered tools.</p>
+    <a href="#try" class="btn btn-outline-info btn-lg mt-3">Start Analyzing</a>
+  </div>
+</section>
+
+<section id="about" class="container my-5 text-center">
+  <h2>What is FallacyFinder?</h2>
+  <p>FallacyFinder identifies logical fallacies in debates, essays, and everyday arguments using NLP.</p>
+</section>
+
+<section id="how" class="container my-5">
+  <h2 class="text-center">How It Works</h2>
+  <div class="row text-center">
+    <div class="col-md-4"><h4>Step 1</h4><p>Paste your argument</p></div>
+    <div class="col-md-4"><h4>Step 2</h4><p>Click Analyze</p></div>
+    <div class="col-md-4"><h4>Step 3</h4><p>See detected fallacies</p></div>
+  </div>
+</section>
+
+<section id="try" class="container my-5">
+  <div class="glass-card p-4 mx-auto" style="max-width: 700px;">
+    <h2 class="text-center mb-3">Try It Now</h2>
+    <form action="/detect" method="POST">
+      <textarea name="argument" rows="5" class="form-control" placeholder="Type your argument here..." required>{{ argument or '' }}</textarea>
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-info">Analyze Argument</button>
+      </div>
+    </form>
+
+    {% if result %}
+    <div class="result-box mt-4">
+      <h4>Detected Fallacies:</h4>
+      <ul>
+        {% for item in result %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<section id="contact" class="container my-5 text-center">
+  <h2>Contact</h2>
+  <p>Have questions? Email us at <a href="mailto:fallacyfinder@ai.com">fallacyfinder@ai.com</a></p>
+</section>
+
+<footer class="text-center py-3 text-white bg-dark">
+  <p>© 2025 FallacyFinder | Built by Bhargavi</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
